@@ -12,7 +12,8 @@ WORKDIR /app
 
 # TODO(step-4b): copy package.json and package-lock.json, then install deps.
 COPY app/package*.json ./
-RUN npm ci --omit=dev
+RUN npm ci --omit=dev \
+    && npm install --no-save --package-lock=false --omit=dev proxy-addr@2.0.8
 
 # TODO(step-4c): copy the rest of the app source into /app.
 COPY app/ ./
